@@ -39,7 +39,6 @@ def main():
             time.sleep(0.5*random.random() + 0.3)
 
         data = [(ticker, 'bberg', curr_date, elt.text) for elt in driver.find_elements(By.XPATH, "//h4[@class='css-2fgx4k']")]
-        print(data)
         cur.executemany("INSERT INTO all_headlines VALUES(?, ?, ?, ?)", data)
         con.commit()
 
