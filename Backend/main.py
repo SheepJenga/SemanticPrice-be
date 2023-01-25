@@ -1,10 +1,32 @@
-from flask import Flask
+from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+import datetime
 
 app = Flask(__name__)
 
-@app.route("/")
-def index():
-    return "Congratulations, it's a web app!"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///scores.db"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+class Thermometers(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    tckr = db.Column(db.String(10))
+    date = db.Column(db.DateTime, default=datetime.datetime.now)
+    score = db.Column(db.Float)
+
+    def __init__(self, tckr, score):
+        self.tckr = tckr
+        self.score = score
+
+
+# @app.route("/")
+# def index():
+#     return render_template("index.html", token="Hello Flask + React")
+
+@app.route("/members")
+def members():
+    return {"members": ["1", "2", "3"]}
 
 @app.route("/<int:celsius>")
 def fahrenheit_from(celsius):
@@ -14,4 +36,4 @@ def fahrenheit_from(celsius):
     return str(fahrenheit)
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8080, debug=True)
+    app.run(port=8080, debug=True)
