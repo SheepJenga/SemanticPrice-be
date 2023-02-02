@@ -5,19 +5,20 @@ import time
 import datetime
 import random
 import sqlite3
+from crawler_settings import Settings
 
 def main():
     # Establish connection to Database
-    con = sqlite3.connect("ticker_info.db")
+    con = sqlite3.connect(Settings.get_database())
     cur = con.cursor()
 
+    cur.tables
+
     curr_date = datetime.date.today().isoformat()
-    tickers = ["TSLA", "MSFT", "AMZN", "AAPL", "GOOGL", "NVDA", "META", "IBM"]
-    companies = ["tesla", "microsoft", "amazon", "apple", "google", "nvidia", "meta", "IBM"]
     user_agent = UserAgent()
     max_page = 5
 
-    for company, ticker in zip(companies, tickers):
+    for company, ticker in Settings.get_company_tickers():
         page = 1
         error_counter = 0
         while page <= max_page:
