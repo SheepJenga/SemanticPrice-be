@@ -1,6 +1,8 @@
+# ONLY RUN TO INITIALIZE DATABASES!
+
 import sqlite3
 
-con = sqlite3.connect("./Backend/ticker_info.db")
+con = sqlite3.connect("ticker_info.db")
 cur = con.cursor()
 
 query1 = '''CREATE TABLE HEADLINES(
@@ -16,6 +18,7 @@ query2 = '''CREATE TABLE SCORES(
     SOURCE CHAR(30),
     SCORE FLOAT
     )'''
+
 
 cur.execute(query1)
 cur.execute(query2)
