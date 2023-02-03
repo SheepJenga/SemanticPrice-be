@@ -33,7 +33,7 @@ def main():
         except:
             print('Not properly loaded')
 
-        for _ in range(3):
+        for _ in range(2):
             driver.execute_script("window.scrollBy(0, 3000);")
             time.sleep(0.5*random.random() + 0.4)
         time.sleep(1)

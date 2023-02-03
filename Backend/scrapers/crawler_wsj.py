@@ -14,7 +14,7 @@ def main():
 
     curr_date = datetime.date.today().isoformat()
     user_agent = UserAgent()
-    max_page = 5
+    max_page = 2
 
     for company, ticker in Settings.get_company_tickers():
         page = 1

@@ -17,7 +17,7 @@ class Settings:
         """
         Returns file location of database.
         """
-        return "./Backend/ticker_info.db"
+        return "../Backend/ticker_info.db"
     
     def get_keywords():
         """

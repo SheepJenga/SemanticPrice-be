@@ -33,7 +33,7 @@ def main():
         except:
             print('Not properly loaded')
 
-        for _ in range(4):
+        for _ in range(2):
             driver.find_element("xpath", "//button[@data-testid='search-show-more-button']").click()
             time.sleep(0.5*random.random() + 0.3)
 
