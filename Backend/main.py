@@ -4,6 +4,7 @@ import datetime
 import sqlite3
 import os
 from scrapers.crawler_settings import Settings
+from NLTK_analysis import analyze
 
 app = Flask(__name__)
 
@@ -39,6 +40,7 @@ def all_scores(date):
 
 @app.route("/api/<string:date>/scores/<string:ticker>/<string:source>", methods=['GET'])
 def ticker_score(ticker, source, date):
+    # analyze()
     con = sqlite3.connect("ticker_info.db")
     cur = con.cursor()
     res = cur.execute(f"SELECT SCORE FROM SCORES WHERE TICKER='{ticker}' AND SOURCE='{source}' AND DATE='{date}'")

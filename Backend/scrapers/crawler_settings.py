@@ -1,3 +1,5 @@
+import os
+
 class Settings:
     def get_company_tickers():
         """
@@ -17,7 +19,7 @@ class Settings:
         """
         Returns file location of database.
         """
-        return "../Backend/ticker_info.db"
+        return os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/ticker_info.db'
     
     def get_keywords():
         """
