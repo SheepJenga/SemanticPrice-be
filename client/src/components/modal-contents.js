@@ -28,7 +28,7 @@ function ModalContents(props) {
                 <CloseIcon 
                 sx={{
                     position: 'absolute', 
-                    left: '96%', 
+                    left: '97%', 
                     top: '4%',
                     transform: 'translate(-50%, -50%)'
                 }}

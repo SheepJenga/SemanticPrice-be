@@ -1,55 +1,42 @@
-import React, { useState } from 'react'
-import Thermometer from 'react-thermometer-component'
-import { Modal, Box, Typography } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+// import Thermometer from 'react-thermometer-component'
+import GaugeChart from 'react-gauge-chart'
+import ModalContents from './modal-contents'
 
 function MyThermometer(props) {
+    const [data, setData] = useState([{}])
     const [open, setOpen] = useState(false)
 
-    let handleOpen = () => setOpen(true)
+    let handleOpen = () => {if (!open) {setOpen(true)}}
     let handleClose = () => setOpen(false)
+
+    useEffect(() => {
+        fetch(`/api/${props.date}/scores/${props.symbol}/${props.source}`).then(
+          res => res.json()
+        ).then(
+          data => {
+            setData(data)
+            console.log(data)
+          }
+        )
+      }, [])
 
     return (
         <div onClick={handleOpen}>
-            <Thermometer theme="dark" value="70" max="100" size="large" height="200" />
-            <Modal
+          {/* <Thermometer theme="dark" value="70" max="100" size="large" height="200" /> */}
+          <GaugeChart id="gauge-chart3"
+            animate={true}
+            nrOfLevels={16} 
+            colors={["#FF5F6D", "#FFC371"]} 
+            arcWidth={0.35}
+            percent={data.score + 0.5} />
+          
+          <ModalContents 
             open={open}
             onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-            >
-                <Box sx={{
-                    bgcolor: '#330631',
-                    opacity: '95%',
-                    boxShadow: 9,
-                    borderRadius: 2,
-                    p: 2,
-                    height: 700,
-                    width: 1000,
-                    outline: 0,
-                    position: 'absolute', 
-                    left: '50%', 
-                    top: '50%',
-                    transform: 'translate(-50%, -50%)'
-                }}>
-                    <Typography id="modal-modal-title" variant="h2" component="h1">
-                    {props.ticker}
-                    </Typography>
-                    <hr />
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    Top headlines:
-                    </Typography>
-                    <div style={{
-                    position: 'absolute', left: '22%', top: '55%',
-                    transform: 'translate(-50%, -50%)'
-                    }}>
-                    <Thermometer theme="dark" value="70" max="100" size="large" height="400" />
-                    </div>
-                    
-                </Box>
-            </Modal>
-            <p>{props.ticker}</p> 
+            ticker={props.ticker} />
         </div>
     )
 }
 
-export default MyThermometer;
+export default MyThermometer

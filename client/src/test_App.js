@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect} from 'react'
-import MyThermometer from './components/Thermometer'
+import MyThermometer from './components/thermometer'
 import { Modal, Button, Box, Typography, Shadows } from '@mui/material'
 import './App.css'
 

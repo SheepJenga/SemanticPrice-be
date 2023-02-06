@@ -38,14 +38,12 @@
 }
 
 html, body {
-  height: 200%;
+  height: 100%;
   width: 100%;
   font-family: 'Roboto';
-  background: rgb(2,0,36);
-  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(60,22,64,1) 35%, rgba(29,18,106,1) 76%, rgba(25,48,135,1) 91%);
+  background: #001e3c;
   padding: 0;
-  color: white;
-  /* font-size: x-; */
+  color: #66b2ff;
   text-align: center;
 }
 
